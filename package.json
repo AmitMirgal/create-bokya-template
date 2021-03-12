@@ -1,6 +1,6 @@
 {
   "name": "create-bokya-template",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "CLI to download the template",
   "main": "index.js",
   "scripts": {

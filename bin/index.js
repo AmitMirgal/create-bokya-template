@@ -25,6 +25,7 @@ const pipeline = promisify(Stream.pipeline);
       choices: [
         { title: "Nextjs", value: "nextjs-co" },
         { title: "Reactjs", value: "reactjs-co" },
+        { title: "Redwoodjs", value: "redwoodjs-co" },
       ],
     },
   ]);
