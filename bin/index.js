@@ -3,6 +3,7 @@
 const fs = require("fs-extra");
 const path = require("path");
 const prompts = require("prompts");
+const { execSync } = require("child_process");
 
 (async () => {
   const response = await prompts([
@@ -26,7 +27,12 @@ const prompts = require("prompts");
     fs.mkdirSync(response.app);
   }
 
-  fs.copy(
+  execSync("git clone https://github.com/AmitMirgal/bokya.git", {
+    stdio: [0, 1, 2], // we need this so node will print the command output
+    cwd: path.resolve(response.app), // path to where you want to save the file
+  });
+
+  /* fs.copy(
     path.resolve(__dirname, `../../${response.template}`),
     path.resolve(response.app),
     { overwrite: true }
@@ -36,5 +42,5 @@ const prompts = require("prompts");
     })
     .catch((err) => {
       console.error(err);
-    });
+    }); */
 })();

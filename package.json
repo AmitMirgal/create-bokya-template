@@ -13,12 +13,6 @@
   "license": "ISC",
   "dependencies": {
     "fs-extra": "^9.1.0",
-    "prompt-choices": "^5.0.0",
     "prompts": "^2.4.0"
-  },
-  "devDependencies": {
-    "inquirer-select-directory": "^1.2.0",
-    "minimist": "^1.2.5",
-    "plop": "^2.7.4"
   }
 }
