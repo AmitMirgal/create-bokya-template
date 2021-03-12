@@ -32,15 +32,17 @@ const { execSync } = require("child_process");
     cwd: path.resolve(response.app), // path to where you want to save the file
   });
 
-  /* fs.copy(
-    path.resolve(__dirname, `../../${response.template}`),
-    path.resolve(response.app),
-    { overwrite: true }
-  )
-    .then(() => {
+  fs.move(
+    path.resolve(`${response.app}/bokya/${response.template}`),
+    path.resolve(`${response.template}`),
+    (err) => {
+      if (err) return console.error(err);
       console.log("success!");
-    })
-    .catch((err) => {
-      console.error(err);
-    }); */
+    }
+  );
+
+  fs.remove(path.resolve(`${response.app}`), (err) => {
+    if (err) return console.error(err);
+    console.log("success!");
+  });
 })();
