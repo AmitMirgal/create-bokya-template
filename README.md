@@ -1,12 +1,5 @@
 # Create Bokya Template
 
-    #####   ####  #    # #   #   ##
-    #    # #    # #   #   # #   #  #
-    #####  #    # ####     #   #    #
-    #    # #    # #  #     #   ######
-    #    # #    # #   #    #   #    #
-    #####   ####  #    #   #   #    #
-
 ![Bokya](https://github.com/AmitMirgal/create-bokya-template/blob/master/docs/bokya.gif)
 
 ## Run the following command to see the magic
