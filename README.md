@@ -1,4 +1,4 @@
-# Cerate Bokya Template
+# Create Bokya Template
 
     #####   ####  #    # #   #   ##
     #    # #    # #   #   # #   #  #
