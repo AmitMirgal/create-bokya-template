@@ -1,13 +1,13 @@
 {
   "name": "create-bokya-template",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "CLI to download the template",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "create-bokya-template": "/bin/index.js"
+    "create-bokya-template": "./bin/index.js"
   },
   "author": "AmitMirgal",
   "license": "ISC",
