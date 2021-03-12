@@ -3,14 +3,20 @@
 const fs = require("fs-extra");
 const path = require("path");
 const prompts = require("prompts");
-const { execSync } = require("child_process");
+const got = require("got");
+const tar = require("tar");
+const { Stream } = require("stream");
+const { promisify } = require("util");
+const chalk = require("chalk");
+
+const pipeline = promisify(Stream.pipeline);
 
 (async () => {
   const response = await prompts([
     {
       type: "text",
       name: "app",
-      message: `What's your App name should be?`,
+      message: `What is your project named?`,
     },
     {
       type: "select",
@@ -23,25 +29,21 @@ const { execSync } = require("child_process");
     },
   ]);
 
-  if (!fs.existsSync(response.app)) {
-    fs.mkdirSync(response.app);
-  }
+  await pipeline(
+    got.stream("https://codeload.github.com/AmitMirgal/bokya/tar.gz/master"),
+    tar.extract([`bokya-master/${response.template}`])
+  );
 
-  execSync("git clone https://github.com/AmitMirgal/bokya.git", {
-    stdio: [0, 1, 2], // we need this so node will print the command output
-    cwd: path.resolve(response.app), // path to where you want to save the file
-  });
-
-  fs.move(
-    path.resolve(`${response.app}/bokya/${response.template}`),
-    path.resolve(`${response.template}`),
+  await fs.move(
+    path.resolve(`bokya-master/${response.template}`),
+    path.resolve(`${response.app}`),
     (err) => {
       if (err) return console.error(err);
-      console.log("success!");
+      console.log(`${chalk.cyanBright(`Successfully installed...`)}`);
     }
   );
 
-  fs.remove(path.resolve(`${response.app}`), (err) => {
+  await fs.remove(path.resolve(`bokya-master`), (err) => {
     if (err) return console.error(err);
     console.log("success!");
   });
