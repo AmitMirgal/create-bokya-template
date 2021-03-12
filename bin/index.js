@@ -34,17 +34,34 @@ const pipeline = promisify(Stream.pipeline);
     tar.extract([`bokya-master/${response.template}`])
   );
 
-  await fs.move(
-    path.resolve(`bokya-master/${response.template}`),
-    path.resolve(`${response.app}`),
-    (err) => {
-      if (err) return console.error(err);
-      console.log(`${chalk.cyanBright(`Successfully installed...`)}`);
-    }
-  );
+  try {
+    fs.moveSync(
+      path.resolve(`bokya-master/${response.template}`),
+      path.resolve(`${response.app}`)
+    );
+    console.log(
+      `${chalk.cyanBright(`Hang on template creation is in process...`)}`
+    );
+  } catch (error) {
+    console.error(err);
+  }
 
-  await fs.remove(path.resolve(`bokya-master`), (err) => {
-    if (err) return console.error(err);
-    console.log("success!");
-  });
+  try {
+    fs.removeSync(path.resolve(`bokya-master`));
+    console.log(
+      `${chalk.magentaBright(`
+    #####   ####  #    # #   #   ##   
+    #    # #    # #   #   # #   #  #  
+    #####  #    # ####     #   #    # 
+    #    # #    # #  #     #   ###### 
+    #    # #    # #   #    #   #    # 
+    #####   ####  #    #   #   #    # 
+    `)}
+    ${chalk.blue(`${chalk.underline(`Template is ready to use.`)}`)}
+
+    ${chalk.yellow(`🚀 Happy coding hours 🚀`)}`
+    );
+  } catch (error) {
+    console.error(err);
+  }
 })();
